@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/shape_fragment_settings_contact_card"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
 
-    <TextView
-            android:id="@+id/text_view_name"
-            android:layout_width="match_parent"
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            tools:text="Dwayne Johnson" />
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/delete_contact_button"
+            android:layout_toLeftOf="@id/delete_contact_button">
 
-    <TextView
-            android:id="@+id/text_view_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            tools:text="+40 0770 367 467" />
+        <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_p2"
+                android:textSize="20sp"
+                tools:text="Dwayne Johnson" />
 
-    <TextView
-            android:id="@+id/text_view_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            tools:text="dwayne_johnson@email.org" />
+        <TextView
+                android:id="@+id/text_view_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_p2"
+                android:textSize="12sp"
+                tools:text="+40 0770 367 467" />
 
-</LinearLayout>
+        <TextView
+                android:id="@+id/text_view_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_p2"
+                android:textSize="12sp"
+                tools:text="dwayne_johnson@email.org" />
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/delete_contact_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/red_p2"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:text="@string/remove_contact_card_string_button"/>
+
+</RelativeLayout>

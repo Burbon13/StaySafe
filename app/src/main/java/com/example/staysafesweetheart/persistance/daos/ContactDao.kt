@@ -1,0 +1,20 @@
+package com.example.staysafesweetheart.persistance.daos
+
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import com.example.staysafesweetheart.persistance.entities.Contact
+
+@Dao
+interface ContactDao {
+    @Insert
+    suspend fun insertContact(contact: Contact)
+
+    @Delete
+    fun deleteContact(contact: Contact)
+
+    @Update
+    fun updateContact(contact: Contact)
+
+    @Query("SELECT * FROM contacts ORDER BY position ASC")
+    fun getAllContacts(): LiveData<List<Contact>>
+}

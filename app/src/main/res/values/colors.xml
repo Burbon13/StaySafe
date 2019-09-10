@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#ffb500</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="grayText">#808080</color>
+    <color name="white">#ffffff</color>
+    <!-- 3 color SETS -->
+    <!-- Blue, Red, Yellow: Funky and Radiant -->
+    <color name="red_p1">#f93800</color>
+    <color name="blue_p1">#283350</color>
+    <color name="yellow_p1">#ffb500</color>
+    <!-- 5 color SETS -->
+    <!--  Turquoise and Red -->
+    <color name="black_p2">#04060F</color>
+    <color name="black_blue_p2">#03353E</color>
+    <color name="blue_p2">#0294A5</color>
+    <color name="gray_p2">#a79c93</color>
+    <color name="red_p2">#c1403d</color>
+</resources>

@@ -1,70 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp"
-        android:background="@color/blue_p2">
+<layout>
 
-    <TextView
-            android:id="@+id/text_view_alert_add_contact_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            android:textSize="30sp"
-            android:textColor="@color/black_p2"/>
+    <data>
+        <variable
+                name="viewModel"
+                type="com.example.staysafesweetheart.viewmodel.NewContactDialogViewModel" />
+    </data>
 
-    <EditText
-            android:id="@+id/edit_text_alert_add_contact_name"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/name_example"
-            android:inputType="textPersonName"
-            android:layout_below="@id/text_view_alert_add_contact_name"/>
+            android:layout_height="match_parent"
+            android:background="@color/blue_p2"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-    <TextView
-            android:id="@+id/text_view_alert_add_contact_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_number"
-            android:textSize="30sp"
-            android:layout_below="@id/edit_text_alert_add_contact_name"
-            android:textColor="@color/black_p2"/>
+        <TextView
+                android:id="@+id/text_view_alert_add_contact_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/black_p2"
+                android:textSize="30sp" />
 
-    <EditText
-            android:id="@+id/edit_text_alert_add_contact_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="phone"
-            android:hint="@string/phone_example"
-            android:layout_below="@id/text_view_alert_add_contact_phone"/>
+        <EditText
+                android:id="@+id/edit_text_alert_add_contact_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_alert_add_contact_name"
+                android:ems="10"
+                android:hint="@string/name_example"
+                android:inputType="textPersonName"
+                android:text="@{viewModel.contact.name}"/>
 
-    <TextView
-            android:id="@+id/text_view_alert_add_contact_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email_address"
-            android:textSize="30sp"
-            android:layout_below="@id/edit_text_alert_add_contact_phone"
-            android:textColor="@color/black_p2"/>
+        <TextView
+                android:id="@+id/text_view_alert_add_contact_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_text_alert_add_contact_name"
+                android:text="@string/phone_number"
+                android:textColor="@color/black_p2"
+                android:textSize="30sp" />
 
-    <EditText
-            android:id="@+id/edit_text_alert_add_contact_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="@string/email_example"
-            android:layout_below="@id/text_view_alert_add_contact_email"/>
+        <EditText
+                android:id="@+id/edit_text_alert_add_contact_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_alert_add_contact_phone"
+                android:ems="10"
+                android:hint="@string/phone_example"
+                android:inputType="phone"
+                android:text="@{viewModel.contact.phoneNumber}"/>
 
-    <Button
-            android:id="@+id/button_add_new_contact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/red_p2"
-            android:text="@string/add_contact_button_text"
-            android:textColor="@color/white"
-            android:layout_below="@id/edit_text_alert_add_contact_email"/>
-</RelativeLayout>
+        <TextView
+                android:id="@+id/text_view_alert_add_contact_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_text_alert_add_contact_phone"
+                android:text="@string/email_address"
+                android:textColor="@color/black_p2"
+                android:textSize="30sp" />
+
+        <EditText
+                android:id="@+id/edit_text_alert_add_contact_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_alert_add_contact_email"
+                android:ems="10"
+                android:hint="@string/email_example"
+                android:inputType="textEmailAddress"
+                android:text="@{viewModel.contact.email}"/>
+
+        <Button
+                android:id="@+id/button_add_new_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_text_alert_add_contact_email"
+                android:background="@color/red_p2"
+                android:text="@string/add_contact_button_text"
+                android:textColor="@color/white" />
+    </RelativeLayout>
+</layout>

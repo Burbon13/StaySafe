@@ -13,11 +13,13 @@ import com.example.staysafesweetheart.databinding.FragmentAlertBinding
 class AlertFragment : Fragment() {
     private lateinit var binding: FragmentAlertBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_alert, container, false)
-
         binding.alertButton.setOnClickListener { onAlert() }
-
         return binding.root
     }
 

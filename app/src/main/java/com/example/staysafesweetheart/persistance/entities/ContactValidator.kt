@@ -1,21 +1,21 @@
 package com.example.staysafesweetheart.persistance.entities
 
 import android.text.TextUtils
+import android.util.Patterns
 
 class ContactValidator {
-    companion object {
-        fun validateEmailTextField(email: String): Boolean {
-            return !TextUtils.isEmpty(email)
-                    && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        }
 
-        fun validatePhoneNumber(phone: String): Boolean {
-            return !TextUtils.isEmpty(phone) &&
-                    android.util.Patterns.PHONE.matcher(phone).matches()
-        }
+    fun validateEmail(email: String?): Boolean {
+        return email != null && !TextUtils.isEmpty(email)
+                && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 
-        fun validateName(name: String): Boolean {
-            return !TextUtils.isEmpty(name)
-        }
+    fun validatePhoneNumber(phone: String?): Boolean {
+        return phone != null && !TextUtils.isEmpty(phone) &&
+                Patterns.PHONE.matcher(phone).matches()
+    }
+
+    fun validateName(name: String?): Boolean {
+        return name != null && !TextUtils.isEmpty(name)
     }
 }

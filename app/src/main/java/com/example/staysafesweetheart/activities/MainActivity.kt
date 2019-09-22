@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Makes the menu items pictures show their original colors
         binding.navView.itemIconTintList = null
 
-        // To respond to clicks on the menu items
-        binding.navView.setNavigationItemSelectedListener(this)
-
         // Set a Toolbar to act as the ActionBar for this Activity window.
         // Toolbar = A primary toolbar within the activity that may display the activity title,
         // application-level navigation affordances, and other interactive items.
@@ -50,21 +47,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.string.navigation_drawer_close
         )
 
+        // Sets the first fragment to be the Alert fragment
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, AlertFragment())
+            .commit()
+    }
+
+    // Registration of View click listeners
+    // Subscription to observables (general observables, not necessarily Rx)
+    // Reflect the current state into UI (UI update)
+    // Functional flows
+    // Initialization of asynchronous functional flows
+    // Resources allocations
+    override fun onStart() {
+        super.onStart()
         // Sets toggle to listen to drawer events
         binding.drawerLayout.addDrawerListener(toggle)
 
         // Synchronize the state of the drawer indicator/affordance with the linked DrawerLayout.
         toggle.syncState()
 
-        // Sets the first fragment to be the Alert fragment
-        supportFragmentManager.beginTransaction().replace(binding.fragmentContainer.id, AlertFragment())
-            .commit()
+        // To respond to clicks on the menu items
+        binding.navView.setNavigationItemSelectedListener(this)
+
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
+    // In this method you will unregister all observers and listeners and release all resources
+    // that were allocated in onStart().
+    override fun onStop() {
+        super.onStop()
 
+        binding.drawerLayout.setOnClickListener(null)
+        binding.navView.setNavigationItemSelectedListener(null)
+    }
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

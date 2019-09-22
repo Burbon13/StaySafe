@@ -1,7 +1,6 @@
 package com.example.staysafesweetheart.dagger2
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -9,10 +8,10 @@ import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.persistance.StaySafeDatabase
 import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.daos.ContactDao
-import com.example.staysafesweetheart.viewmodel.SettingsViewModel
 import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
 import dagger.Module
 import dagger.Provides
+
 
 @Module
 class SettingsModule(private val context: Context) {

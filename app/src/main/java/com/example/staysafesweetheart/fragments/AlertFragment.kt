@@ -19,8 +19,17 @@ class AlertFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_alert, container, false)
-        binding.alertButton.setOnClickListener { onAlert() }
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.alertButton.setOnClickListener { onAlert() }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.alertButton.setOnClickListener(null)
     }
 
     private fun onAlert() {

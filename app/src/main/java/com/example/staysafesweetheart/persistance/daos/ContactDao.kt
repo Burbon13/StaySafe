@@ -1,7 +1,11 @@
 package com.example.staysafesweetheart.persistance.daos
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Delete
+import androidx.room.Query
+import androidx.room.Update
 import com.example.staysafesweetheart.persistance.entities.Contact
 
 @Dao

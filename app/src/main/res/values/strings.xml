@@ -26,4 +26,5 @@
     <string name="invalid_contact_name_error">Name cannot be empty</string>
     <string name="invalid_contact_phone_error">Invalid phone number</string>
     <string name="invalid_contact_email_error">Invalid email</string>
+    <string name="my_contacts">My contacts</string>
 </resources>

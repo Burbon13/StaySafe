@@ -103,6 +103,7 @@ class NewContactDialogViewModel(
                     contactPhoneNumber.value!!
                 )
             )
+            _contactAdded.value = true
         } else {
             // Setting this to false will alert the observer that there was something wrong with the
             // contact's data

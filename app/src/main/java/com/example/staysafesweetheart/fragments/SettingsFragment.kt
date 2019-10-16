@@ -20,7 +20,6 @@ import com.example.staysafesweetheart.dagger2.StaySafeComponent
 import com.example.staysafesweetheart.databinding.DialogFragmentSettingsAddContactBinding
 import com.example.staysafesweetheart.databinding.FragmentSettingsBinding
 import com.example.staysafesweetheart.viewmodel.NewContactDialogViewModel
-import com.example.staysafesweetheart.viewmodel.NewContactDialogViewModelFactory
 import com.example.staysafesweetheart.viewmodel.SettingsViewModel
 import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
 import javax.inject.Inject
@@ -39,6 +38,9 @@ class SettingsFragment : Fragment() {
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var daggerComponent: StaySafeComponent
 
+    companion object {
+        private val TAG = SettingsFragment::class.qualifiedName
+    }
 
     //Dependency injection and initialization of Fragment’s members takes place here.
     //You must not touch or do anything related to Android Views in Fragment’s onCreate(Bundle)
@@ -62,7 +64,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings_navigation, container, false)
         binding.settingsViewModel = settingsViewModel
         binding.recyclerViewContacts.adapter = contactsListAdapter
         binding.recyclerViewContacts.layoutManager = layoutManager
@@ -74,6 +76,7 @@ class SettingsFragment : Fragment() {
     // 2. Subscription to observables (general observables, not necessarily Rx)
     // 3. Reflect the current state into UI (UI update)
     override fun onStart() {
+        Log.d(TAG, "onStart")
         super.onStart()
         settingsViewModel.contacts.observe(this, Observer {
             contactsListAdapter.setContacts(it)
@@ -84,6 +87,7 @@ class SettingsFragment : Fragment() {
     // In this method you will unregister all observers and listeners and release all resources
     // that were allocated in onStart().
     override fun onStop() {
+        Log.d(TAG, "onStop")
         super.onStop()
         settingsViewModel.contacts.removeObservers(this)
         binding.buttonAddContact.setOnClickListener(null)
@@ -91,7 +95,7 @@ class SettingsFragment : Fragment() {
 
 
     private fun onAddNewContact() {
-        Log.i("MEINE TAG", "1")
+        Log.i(TAG, "Add new contact action")
         // Creating the dialog window to add new contact
         val dialog = Dialog(this.context!!)
 

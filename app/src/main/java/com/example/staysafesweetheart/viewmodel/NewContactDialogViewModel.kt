@@ -1,12 +1,10 @@
 package com.example.staysafesweetheart.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.staysafesweetheart.R
-import com.example.staysafesweetheart.persistance.daos.ContactDao
+import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.entities.Contact
 import com.example.staysafesweetheart.persistance.entities.ContactValidator
 import kotlinx.coroutines.CoroutineScope
@@ -21,9 +19,13 @@ import kotlinx.coroutines.withContext
  * emergency contact [Contact]
  */
 class NewContactDialogViewModel(
-    private val contactDao: ContactDao,
+    private val repository: StaySafeRepository,
     private val contactValidator: ContactValidator
 ) : ViewModel() {
+
+    companion object {
+        val TAG = NewContactDialogViewModel::class.qualifiedName
+    }
 
     /**
      * viewModelJob allows us to cancel all coroutines started by this ViewModel.
@@ -43,9 +45,9 @@ class NewContactDialogViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     // Will contain the new contact's data
-    private val _contact = MutableLiveData<Contact>()
-    val contact: LiveData<Contact>
-        get() = _contact
+    val contactName = MutableLiveData<String>()
+    val contactPhoneNumber = MutableLiveData<String>()
+    val contactEmail = MutableLiveData<String>()
 
     private val _contactEmailError = MutableLiveData<Boolean>()
     val contactEmailError: LiveData<Boolean>
@@ -68,42 +70,55 @@ class NewContactDialogViewModel(
         get() = _contactAdded
 
     fun addNewContact() {
+        Log.d(TAG, "New contact desired to be added")
+
         // Settings this to true will alert the observer that the application is verifying if
         // the contact's data is valid
         _verifyingNewContact.value = true
 
-        val contactValue = contact.value
+        // Settings this to false will alert the observer of the error regarding the name
+        _contactNameError.value = !contactValidator.validateName(contactName.value)
+        Log.d(TAG, "Contact name error " + _contactNameError.value)
 
-        // Settings this to true will alert the observer of the error regarding the name
-        _contactNameError.value = contactValidator.validateName(contactValue?.name)
+        // Settings this to false will alert the observer of the error regarding the email
+        _contactEmailError.value = !contactValidator.validateEmail(contactEmail.value)
+        Log.d(TAG, "Contact email error " + _contactEmailError.value)
 
-        // Settings this to true will alert the observer of the error regarding the email
-        _contactEmailError.value = contactValidator.validateEmail(contactValue?.email)
-
-        // Settings this to true will alert the observer of the error regarding the name
-        _verifyingNewContact.value = contactValidator.validateName(contactValue?.name)
+        // Settings this to false will alert the observer of the error regarding the name
+        _contactPhoneError.value = !contactValidator.validatePhoneNumber(contactPhoneNumber.value)
+        Log.d(TAG, "Contact phone error " + _contactPhoneError.value)
 
         // Settings this to true will alert the observer that the contact verification has finished
         _verifyingNewContact.value = true
 
         if (!_contactNameError.value!! && !_contactEmailError.value!!
-            && !_verifyingNewContact.value!!
+            && !_contactPhoneError.value!!
         ) {
-            insertNewContact(contactValue!!)
+            Log.d(TAG, "Contact data is valid")
+            insertNewContact(
+                Contact(
+                    null,
+                    contactName.value!!,
+                    contactEmail.value!!,
+                    contactPhoneNumber.value!!
+                )
+            )
         } else {
             // Setting this to false will alert the observer that there was something wrong with the
             // contact's data
+            Log.d(TAG, "Contact data is invalid")
             _contactAdded.value = false
 
         }
     }
 
     private fun insertNewContact(contact: Contact) {
+        Log.d(TAG, "Inserting new contact: $contact")
         uiScope.launch {
             // IO is a thread pool for running operations that access the disk, such as
             // our Room database.
             withContext(Dispatchers.IO) {
-                contactDao.insertContact(contact)
+                repository.insert(contact)
             }
             // Setting this state variable to true will alert the observer that the new contact
             // was successfully added

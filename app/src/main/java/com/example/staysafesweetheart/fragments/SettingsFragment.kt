@@ -1,6 +1,8 @@
 package com.example.staysafesweetheart.fragments
 
+import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +16,11 @@ import com.example.staysafesweetheart.R
 import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
+import com.example.staysafesweetheart.dagger2.StaySafeComponent
+import com.example.staysafesweetheart.databinding.DialogFragmentSettingsAddContactBinding
 import com.example.staysafesweetheart.databinding.FragmentSettingsBinding
+import com.example.staysafesweetheart.viewmodel.NewContactDialogViewModel
+import com.example.staysafesweetheart.viewmodel.NewContactDialogViewModelFactory
 import com.example.staysafesweetheart.viewmodel.SettingsViewModel
 import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
 import javax.inject.Inject
@@ -31,6 +37,7 @@ class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
+    private lateinit var daggerComponent: StaySafeComponent
 
 
     //Dependency injection and initialization of Fragment’s members takes place here.
@@ -38,8 +45,10 @@ class SettingsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
-            .inject(this)
+        daggerComponent =
+            DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
+
+        daggerComponent.inject(this)
         settingsViewModel =
             ViewModelProvider(this, settingsViewModelFactory).get(SettingsViewModel::class.java)
     }
@@ -72,7 +81,7 @@ class SettingsFragment : Fragment() {
         binding.buttonAddContact.setOnClickListener { onAddNewContact() }
     }
 
-    //In this method you will unregister all observers and listeners and release all resources
+    // In this method you will unregister all observers and listeners and release all resources
     // that were allocated in onStart().
     override fun onStop() {
         super.onStop()
@@ -82,6 +91,24 @@ class SettingsFragment : Fragment() {
 
 
     private fun onAddNewContact() {
+        Log.i("MEINE TAG", "1")
+        // Creating the dialog window to add new contact
+        val dialog = Dialog(this.context!!)
 
+        val dialogBinding = DataBindingUtil.inflate<DialogFragmentSettingsAddContactBinding>(
+            layoutInflater,
+            R.layout.dialog_fragment_settings_add_contact,
+            null,
+            false
+        )
+
+        dialogBinding.viewModel =
+            ViewModelProvider(this, daggerComponent.getNewContactDialogViewModelFactory()).get(
+                NewContactDialogViewModel::class.java
+            )
+
+        dialog.setContentView(dialogBinding.root)
+
+        dialog.show()
     }
 }

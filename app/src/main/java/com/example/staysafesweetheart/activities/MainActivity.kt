@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
-import kotlinx.android.synthetic.main.activity_main.toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.databinding.DataBindingUtil
 import com.example.staysafesweetheart.R
@@ -14,6 +13,11 @@ import com.example.staysafesweetheart.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 
 
+/**
+ * Main entry class point of the application (where it all starts).
+ * Implements NavigationView.OnNavigationItemSelectedListener in order to listen for item menu
+ * selections.
+ */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Set a Toolbar to act as the ActionBar for this Activity window.
         // Toolbar = A primary toolbar within the activity that may display the activity title,
         // application-level navigation affordances, and other interactive items.
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
         // Construct a new ActionBarDrawerToggle with a Toolbar and a Drawer menu layout
         toggle = ActionBarDrawerToggle(

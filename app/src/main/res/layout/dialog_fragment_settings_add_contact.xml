@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
                 name="viewModel"
                 type="com.example.staysafesweetheart.viewmodel.NewContactDialogViewModel" />
@@ -30,7 +31,7 @@
                 android:ems="10"
                 android:hint="@string/name_example"
                 android:inputType="textPersonName"
-                android:text="@{viewModel.contact.name}"/>
+                android:text="@={viewModel.contactName}" />
 
         <TextView
                 android:id="@+id/text_view_alert_add_contact_phone"
@@ -49,7 +50,7 @@
                 android:ems="10"
                 android:hint="@string/phone_example"
                 android:inputType="phone"
-                android:text="@{viewModel.contact.phoneNumber}"/>
+                android:text="@={viewModel.contactPhoneNumber}" />
 
         <TextView
                 android:id="@+id/text_view_alert_add_contact_email"
@@ -68,7 +69,7 @@
                 android:ems="10"
                 android:hint="@string/email_example"
                 android:inputType="textEmailAddress"
-                android:text="@{viewModel.contact.email}"/>
+                android:text="@={viewModel.contactEmail}" />
 
         <Button
                 android:id="@+id/button_add_new_contact"
@@ -76,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/edit_text_alert_add_contact_email"
                 android:background="@color/red_p2"
+                android:onClick="@{() -> viewModel.addNewContact()}"
                 android:text="@string/add_contact_button_text"
                 android:textColor="@color/white" />
     </RelativeLayout>

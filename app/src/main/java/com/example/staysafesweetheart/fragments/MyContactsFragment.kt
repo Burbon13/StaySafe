@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.staysafesweetheart.R
 
@@ -14,21 +15,22 @@ import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
 import com.example.staysafesweetheart.dagger2.StaySafeComponent
-import com.example.staysafesweetheart.databinding.FragmentSettingsBinding
+import com.example.staysafesweetheart.databinding.FragmentMyContactsBinding
 import com.example.staysafesweetheart.viewmodel.MyContactsViewModel
 import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
+import javax.inject.Inject
 
 
 class MyContactsFragment : Fragment() {
 
-    //@Inject
+    @Inject
     lateinit var myContactsViewModelFactory: MyContactsViewModelFactory
-    //@Inject
+    @Inject
     lateinit var contactsListAdapter: ContactsListAdapter
-    //@Inject
+    @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
 
-    private lateinit var binding: FragmentSettingsBinding
+    private lateinit var binding: FragmentMyContactsBinding
     private lateinit var myContactsViewModel: MyContactsViewModel
     private lateinit var daggerComponent: StaySafeComponent
 
@@ -45,8 +47,8 @@ class MyContactsFragment : Fragment() {
             DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
 
         daggerComponent.inject(this)
-        //myContactsViewModel =
-        //  ViewModelProvider(this, myContactsViewModelFactory).get(SettingsViewModel::class.java)
+        myContactsViewModel =
+            ViewModelProvider(this, myContactsViewModelFactory).get(MyContactsViewModel::class.java)
     }
 
     // All Fragment’s members holding references to objects related to View hierarchy must be
@@ -60,13 +62,13 @@ class MyContactsFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_settings_navigation,
+            R.layout.fragment_my_contacts,
             container,
             false
         )
-//        binding.myContactsViewModel = myContactsViewModel
-//        binding.recyclerViewContacts.adapter = contactsListAdapter
-//        binding.recyclerViewContacts.layoutManager = layoutManager
+        binding.myContactsViewModel = myContactsViewModel
+        binding.myContactsRecyclerView.adapter = contactsListAdapter
+        binding.myContactsRecyclerView.layoutManager = layoutManager
 
         return binding.root
     }
@@ -75,6 +77,7 @@ class MyContactsFragment : Fragment() {
     // 2. Subscription to observables (general observables, not necessarily Rx)
     // 3. Reflect the current state into UI (UI update)
     override fun onStart() {
+        super.onStart()
         Log.d(TAG, "onStart")
 //        super.onStart()
 //        myContactsViewModel.contacts.observe(this, Observer {

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.staysafesweetheart.R
 
+
 class SettingsFragmentNavigation : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,

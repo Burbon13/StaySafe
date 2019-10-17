@@ -1,3 +1,5 @@
 package com.example.staysafesweetheart.viewmodel
 
-class MyContactsViewModel
+import androidx.lifecycle.ViewModel
+
+class MyContactsViewModel : ViewModel()

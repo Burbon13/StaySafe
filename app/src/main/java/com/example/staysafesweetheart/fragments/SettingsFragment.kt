@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.staysafesweetheart.R
 
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
@@ -69,10 +70,11 @@ class SettingsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Log.d(TAG, "FUCK")
-        settingsViewModel.yourEmergencyContactsPressed.observe(this, Observer {
-            openMyEmergencyContactsFragment()
-        })
+        // Ai ramas aici....nu merge asta...nu stiu de ce
+        // Daca reusesti sa il faci sa mearga vezi daca merita sa te chinui cu live data
+        binding.emergencyContactsButton.setOnClickListener { view ->
+            Log.i(TAG, "PLA MEA")
+        }
         settingsViewModel.templateMessagesPressed.observe(this, Observer {
             openTemplateMessagesFragment()
         })
@@ -84,8 +86,9 @@ class SettingsFragment : Fragment() {
         settingsViewModel.templateMessagesPressed.removeObservers(this)
     }
 
-    private fun openMyEmergencyContactsFragment() {
-        Log.d(TAG, "Opening MyEmergencyContacts fragment")
+    private fun openMyEmergencyContactsFragment(view: View) {
+        Log.d(TAG, "NUUUU")
+        view.findNavController().navigate(R.id.action_settingsFragment_to_myContactsFragment)
     }
 
     private fun openTemplateMessagesFragment() {

@@ -1,25 +1,35 @@
 package com.example.staysafesweetheart.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.staysafesweetheart.R
 
+import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
 import com.example.staysafesweetheart.dagger2.StaySafeComponent
 import com.example.staysafesweetheart.databinding.FragmentSettingsBinding
-import com.example.staysafesweetheart.viewmodel.SettingsViewModel
+import com.example.staysafesweetheart.viewmodel.MyContactsViewModel
+import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
 
 
-class SettingsFragment : Fragment() {
+class MyContactsFragment : Fragment() {
+
+    //@Inject
+    lateinit var myContactsViewModelFactory: MyContactsViewModelFactory
+    //@Inject
+    lateinit var contactsListAdapter: ContactsListAdapter
+    //@Inject
+    lateinit var layoutManager: RecyclerView.LayoutManager
 
     private lateinit var binding: FragmentSettingsBinding
-    private lateinit var settingsViewModel: SettingsViewModel
+    private lateinit var myContactsViewModel: MyContactsViewModel
     private lateinit var daggerComponent: StaySafeComponent
 
     companion object {
@@ -35,8 +45,8 @@ class SettingsFragment : Fragment() {
             DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
 
         daggerComponent.inject(this)
-//        settingsViewModel =
-//            ViewModelProvider(this, settingsViewModelFactory).get(SettingsViewModel::class.java)
+        //myContactsViewModel =
+        //  ViewModelProvider(this, myContactsViewModelFactory).get(SettingsViewModel::class.java)
     }
 
     // All Fragment’s members holding references to objects related to View hierarchy must be
@@ -50,11 +60,40 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_settings,
+            R.layout.fragment_settings_navigation,
             container,
             false
         )
+//        binding.myContactsViewModel = myContactsViewModel
+//        binding.recyclerViewContacts.adapter = contactsListAdapter
+//        binding.recyclerViewContacts.layoutManager = layoutManager
+
         return binding.root
     }
 
+    // 1. Registration of View click listeners
+    // 2. Subscription to observables (general observables, not necessarily Rx)
+    // 3. Reflect the current state into UI (UI update)
+    override fun onStart() {
+        Log.d(TAG, "onStart")
+//        super.onStart()
+//        myContactsViewModel.contacts.observe(this, Observer {
+//            contactsListAdapter.setContacts(it)
+//        })
+//        binding.buttonAddContact.setOnClickListener { onAddNewContact() }
+    }
+
+    // In this method you will unregister all observers and listeners and release all resources
+    // that were allocated in onStart().
+    override fun onStop() {
+        Log.d(TAG, "onStop")
+        super.onStop()
+//        myContactsViewModel.contacts.removeObservers(this)
+//        binding.myContactsViewModel.setOnClickListener(null)
+    }
+
+
+    private fun onAddNewContact() {
+        //TODO: Start new fragment
+    }
 }

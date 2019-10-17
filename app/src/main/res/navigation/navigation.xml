@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation" />
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+        app:startDestination="@id/settingsFragment">
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.example.staysafesweetheart.fragments.SettingsFragment"
+            android:label="SettingsFragment" >
+        <action
+                android:id="@+id/action_settingsFragment_to_myContactsFragment"
+                app:destination="@id/myContactsFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/myContactsFragment"
+            android:name="com.example.staysafesweetheart.fragments.MyContactsFragment"
+            android:label="MyContactsFragment" >
+        <action
+                android:id="@+id/action_myContactsFragment_to_addContactFragment"
+                app:destination="@id/addContactFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/addContactFragment"
+            android:name="com.example.staysafesweetheart.fragments.AddContactFragment"
+            android:label="AddContactFragment" />
+</navigation>

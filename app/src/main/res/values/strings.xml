@@ -27,4 +27,7 @@
     <string name="invalid_contact_phone_error">Invalid phone number</string>
     <string name="invalid_contact_email_error">Invalid email</string>
     <string name="my_contacts">My contacts</string>
+    <string name="emergency_contacts_image_description">An image representing 3 people</string>
+    <string name="template_message_image_description">An image depicting a message with a heart</string>
+    <string name="template_messages">Template messages</string>
 </resources>

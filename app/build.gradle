@@ -78,6 +78,7 @@ dependencies {
     // Navigation paths for fragments
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 }
 

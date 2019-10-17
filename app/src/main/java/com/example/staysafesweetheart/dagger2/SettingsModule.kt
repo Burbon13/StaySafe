@@ -51,7 +51,7 @@ class SettingsModule(private val context: Context) {
     }
 
     @Provides
-    fun provideSettingsViewModelFactory(repository: StaySafeRepository): SettingsViewModelFactory {
+    fun provideSettingsViewModelFactory(): SettingsViewModelFactory {
         return SettingsViewModelFactory()
     }
 

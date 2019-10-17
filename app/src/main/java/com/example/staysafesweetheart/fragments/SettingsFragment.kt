@@ -1,11 +1,13 @@
 package com.example.staysafesweetheart.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.staysafesweetheart.R
 
@@ -14,9 +16,14 @@ import com.example.staysafesweetheart.dagger2.SettingsModule
 import com.example.staysafesweetheart.dagger2.StaySafeComponent
 import com.example.staysafesweetheart.databinding.FragmentSettingsBinding
 import com.example.staysafesweetheart.viewmodel.SettingsViewModel
+import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
+import javax.inject.Inject
 
 
 class SettingsFragment : Fragment() {
+
+    @Inject
+    lateinit var settingsViewModelFactory: SettingsViewModelFactory
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
@@ -35,8 +42,8 @@ class SettingsFragment : Fragment() {
             DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
 
         daggerComponent.inject(this)
-//        settingsViewModel =
-//            ViewModelProvider(this, settingsViewModelFactory).get(SettingsViewModel::class.java)
+        settingsViewModel =
+            ViewModelProvider(this, settingsViewModelFactory).get(SettingsViewModel::class.java)
     }
 
     // All Fragment’s members holding references to objects related to View hierarchy must be
@@ -54,7 +61,34 @@ class SettingsFragment : Fragment() {
             container,
             false
         )
+
+        binding.settingsViewModel = settingsViewModel
+
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "FUCK")
+        settingsViewModel.yourEmergencyContactsPressed.observe(this, Observer {
+            openMyEmergencyContactsFragment()
+        })
+        settingsViewModel.templateMessagesPressed.observe(this, Observer {
+            openTemplateMessagesFragment()
+        })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        settingsViewModel.yourEmergencyContactsPressed.removeObservers(this)
+        settingsViewModel.templateMessagesPressed.removeObservers(this)
+    }
+
+    private fun openMyEmergencyContactsFragment() {
+        Log.d(TAG, "Opening MyEmergencyContacts fragment")
+    }
+
+    private fun openTemplateMessagesFragment() {
+        Log.d(TAG, "Opening TemplateMessages fragment")
+    }
 }

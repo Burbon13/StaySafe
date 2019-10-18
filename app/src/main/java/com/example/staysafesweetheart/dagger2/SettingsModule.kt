@@ -8,7 +8,9 @@ import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.persistance.StaySafeDatabase
 import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.daos.ContactDao
+import com.example.staysafesweetheart.viewmodel.MainActivityViewModelFactory
 import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
+import com.example.staysafesweetheart.viewmodel.SettingsViewModel
 import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
 import dagger.Module
 import dagger.Provides

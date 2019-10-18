@@ -1,21 +1,15 @@
 package com.example.staysafesweetheart.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
-class SettingsViewModelFactory : ViewModelProvider.Factory {
-
-    init {
-        Log.d("FUCK", "FUCK FUCK 32425")
-    }
+class MainActivityViewModelFactory : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SettingsViewModel::class.java)) {
-            Log.d("FUCK", "FUCK FUCK FUCK")
-            return SettingsViewModel() as T
+        if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
+            return MainActivityViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

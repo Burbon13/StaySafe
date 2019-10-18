@@ -56,7 +56,7 @@ class SettingsModule(private val context: Context) {
     }
 
     @Provides
-    fun provideMyContactsViewModelFactory(): MyContactsViewModelFactory {
-        return MyContactsViewModelFactory()
+    fun provideMyContactsViewModelFactory(repository: StaySafeRepository): MyContactsViewModelFactory {
+        return MyContactsViewModelFactory(repository)
     }
 }

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.staysafesweetheart.R
 
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
@@ -29,7 +30,6 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var daggerComponent: StaySafeComponent
-    private lateinit var navController: NavController
 
     companion object {
         private val TAG = SettingsFragment::class.qualifiedName
@@ -66,8 +66,6 @@ class SettingsFragment : Fragment() {
             false
         )
 
-        navController = container!!.findNavController()
-
         binding.settingsViewModel = settingsViewModel
 
         return binding.root
@@ -89,7 +87,7 @@ class SettingsFragment : Fragment() {
 
     private fun openMyEmergencyContactsFragment() {
         Log.d(TAG, "Opening 'MyEmergencyContacts' fragment")
-        navController.navigate(R.id.action_settingsFragment_to_myContactsFragment)
+        findNavController().navigate(R.id.action_settingsFragment_to_myContactsFragment)
     }
 
     private fun openTemplateMessagesFragment() {

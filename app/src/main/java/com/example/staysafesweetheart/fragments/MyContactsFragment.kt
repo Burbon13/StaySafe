@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.staysafesweetheart.R
 
@@ -79,11 +81,11 @@ class MyContactsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart")
-//        super.onStart()
-//        myContactsViewModel.contacts.observe(this, Observer {
-//            contactsListAdapter.setContacts(it)
-//        })
-//        binding.buttonAddContact.setOnClickListener { onAddNewContact() }
+        super.onStart()
+        myContactsViewModel.contacts.observe(this, Observer {
+            contactsListAdapter.setContacts(it)
+        })
+        binding.myContactsAddButton.setOnClickListener { onAddNewContact() }
     }
 
     // In this method you will unregister all observers and listeners and release all resources
@@ -91,12 +93,15 @@ class MyContactsFragment : Fragment() {
     override fun onStop() {
         Log.d(TAG, "onStop")
         super.onStop()
-//        myContactsViewModel.contacts.removeObservers(this)
-//        binding.myContactsViewModel.setOnClickListener(null)
+        myContactsViewModel.contacts.removeObservers(this)
+        binding.myContactsAddButton.setOnClickListener(null)
+        binding.myContactsViewModel = null
+        binding.myContactsRecyclerView.adapter = null
+        binding.myContactsRecyclerView.layoutManager = null
     }
 
 
     private fun onAddNewContact() {
-        //TODO: Start new fragment
+        findNavController().navigate(R.id.action_myContactsFragment_to_addContactFragment)
     }
 }

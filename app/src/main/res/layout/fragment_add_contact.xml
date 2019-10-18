@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-<!--    <data>-->
+    <data>
 
-<!--        <variable-->
-<!--                name="viewModel"-->
-<!--                type="com.example.staysafesweetheart.viewmodel.NewContactDialogViewModel" />-->
-<!--    </data>-->
+        <variable
+                name="addContactViewModel"
+                type="com.example.staysafesweetheart.viewmodel.AddContactViewModel" />
+    </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                 android:layout_below="@id/text_view_alert_add_contact_name"
                 android:ems="10"
                 android:hint="@string/name_example"
-                android:inputType="textPersonName"/>
-<!--                android:text="@={viewModel.contactName}" />-->
+                android:inputType="textPersonName"
+                android:text="@={addContactViewModel.contactName}" />
 
         <TextView
                 android:id="@+id/text_view_alert_add_contact_phone"
@@ -49,8 +49,8 @@
                 android:layout_below="@id/text_view_alert_add_contact_phone"
                 android:ems="10"
                 android:hint="@string/phone_example"
-                android:inputType="phone"/>
-<!--                android:text="@={viewModel.contactPhoneNumber}" />-->
+                android:inputType="phone"
+                android:text="@={addContactViewModel.contactPhoneNumber}" />
 
         <TextView
                 android:id="@+id/text_view_alert_add_contact_email"
@@ -68,8 +68,8 @@
                 android:layout_below="@id/text_view_alert_add_contact_email"
                 android:ems="10"
                 android:hint="@string/email_example"
-                android:inputType="textEmailAddress"/>
-<!--                android:text="@={viewModel.contactEmail}" />-->
+                android:inputType="textEmailAddress"
+                android:text="@={addContactViewModel.contactEmail}" />
 
         <Button
                 android:id="@+id/button_add_new_contact"
@@ -77,9 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/edit_text_alert_add_contact_email"
                 android:background="@color/red_p2"
+                android:onClick="@{() -> addContactViewModel.onAddContact()}"
                 android:text="@string/add_contact_button_text"
                 android:textColor="@color/white" />
-<!--        android:onClick="@{() -> viewModel.addNewContact()}"-->
 
     </RelativeLayout>
 </layout>

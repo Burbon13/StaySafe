@@ -11,6 +11,7 @@ import com.example.staysafesweetheart.persistance.entities.ContactValidator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class AddContactViewModel(
     private val repository: StaySafeRepository,
     private val contactValidator: ContactValidator

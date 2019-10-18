@@ -10,6 +10,7 @@ import com.example.staysafesweetheart.R
 import com.example.staysafesweetheart.databinding.ActivityMainBinding
 import com.example.staysafesweetheart.fragments.AlertFragment
 import com.example.staysafesweetheart.fragments.SettingsFragment
+import com.example.staysafesweetheart.fragments.SettingsFragmentNavigation
 import com.google.android.material.navigation.NavigationView
 
 
@@ -21,6 +22,8 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var settingsFragmentNavigation: SettingsFragmentNavigation
 
     // This method should host all the logic that would reside in a constructor otherwise.
     // Inject dependencies.
@@ -86,6 +89,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
+            if (settingsFragmentNavigation.onBackPressed()) {
+                return
+            }
             super.onBackPressed()
         }
     }
@@ -96,10 +102,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.fragment_container,
                 AlertFragment()
             ).commit()
-            R.id.nav_settings -> supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                SettingsFragment()
-            ).commit()
+            R.id.nav_settings -> {
+                settingsFragmentNavigation = SettingsFragmentNavigation()
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.fragment_container,
+                    settingsFragmentNavigation
+                ).commit()
+            }
         }
         menuItem.isChecked = true
         binding.drawerLayout.closeDrawers()

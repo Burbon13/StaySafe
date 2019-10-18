@@ -35,7 +35,7 @@ class MyContactsFragment : Fragment() {
     private lateinit var daggerComponent: StaySafeComponent
 
     companion object {
-        private val TAG = SettingsFragment::class.qualifiedName
+        private val TAG = MyContactsFragment::class.qualifiedName
     }
 
     //Dependency injection and initialization of Fragment’s members takes place here.

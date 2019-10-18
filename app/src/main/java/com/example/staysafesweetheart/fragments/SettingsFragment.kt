@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.staysafesweetheart.R
 
@@ -29,6 +29,7 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var daggerComponent: StaySafeComponent
+    private lateinit var navController: NavController
 
     companion object {
         private val TAG = SettingsFragment::class.qualifiedName
@@ -38,7 +39,7 @@ class SettingsFragment : Fragment() {
     //You must not touch or do anything related to Android Views in Fragment’s onCreate(Bundle)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.d(TAG, "onCreate()")
         daggerComponent =
             DaggerStaySafeComponent.builder().settingsModule(SettingsModule(context!!)).build()
 
@@ -56,12 +57,16 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "onCreateView()")
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_settings,
             container,
             false
         )
+
+        navController = container!!.findNavController()
 
         binding.settingsViewModel = settingsViewModel
 
@@ -70,28 +75,24 @@ class SettingsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Ai ramas aici....nu merge asta...nu stiu de ce
-        // Daca reusesti sa il faci sa mearga vezi daca merita sa te chinui cu live data
-        binding.emergencyContactsButton.setOnClickListener { view ->
-            Log.i(TAG, "PLA MEA")
-        }
-        settingsViewModel.templateMessagesPressed.observe(this, Observer {
-            openTemplateMessagesFragment()
-        })
+        Log.d(TAG, "onStart()")
+        binding.emergencyContactsButton.setOnClickListener { openMyEmergencyContactsFragment() }
+        binding.templateMessagesButton.setOnClickListener { openTemplateMessagesFragment() }
     }
 
     override fun onStop() {
         super.onStop()
-        settingsViewModel.yourEmergencyContactsPressed.removeObservers(this)
-        settingsViewModel.templateMessagesPressed.removeObservers(this)
+        Log.d(TAG, "onStop()")
+        binding.emergencyContactsButton.setOnClickListener(null)
+        binding.templateMessagesButton.setOnClickListener(null)
     }
 
-    private fun openMyEmergencyContactsFragment(view: View) {
-        Log.d(TAG, "NUUUU")
-        view.findNavController().navigate(R.id.action_settingsFragment_to_myContactsFragment)
+    private fun openMyEmergencyContactsFragment() {
+        Log.d(TAG, "Opening 'MyEmergencyContacts' fragment")
+        navController.navigate(R.id.action_settingsFragment_to_myContactsFragment)
     }
 
     private fun openTemplateMessagesFragment() {
-        Log.d(TAG, "Opening TemplateMessages fragment")
+        Log.d(TAG, "Opening 'TemplateMessages' fragment")
     }
 }

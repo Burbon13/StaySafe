@@ -42,7 +42,6 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:background="@color/red_p2"
-                        android:onClick="@{() -> settingsViewModel.yourEmergencyContactsOnPressed()}"
                         android:text="@string/your_emergency_contacts"
                         android:textColor="#ffffff" />
             </LinearLayout>
@@ -70,7 +69,6 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:background="@color/red_p2"
-                        android:onClick="@{() -> settingsViewModel.templateMessagesPressedOnPressed()}"
                         android:text="@string/template_messages"
                         android:textColor="#ffffff" />
             </LinearLayout>

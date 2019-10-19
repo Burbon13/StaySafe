@@ -20,7 +20,7 @@ import dagger.Provides
 class SettingsModule(private val context: Context) {
 
     companion object {
-        private const val DATABASE_NAME = "stay_safe_database_0.2"
+        private const val DATABASE_NAME = "stay_safe_database_0.3"
     }
 
     @Provides

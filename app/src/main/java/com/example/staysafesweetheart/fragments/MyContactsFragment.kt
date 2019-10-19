@@ -81,8 +81,9 @@ class MyContactsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart")
-        super.onStart()
         myContactsViewModel.contacts.observe(this, Observer {
+            Log.d(TAG, "CONTACTS MODIFIED BICI!")
+            Log.d(TAG, it.size.toString())
             contactsListAdapter.setContacts(it)
         })
         binding.myContactsAddButton.setOnClickListener { onAddNewContact() }

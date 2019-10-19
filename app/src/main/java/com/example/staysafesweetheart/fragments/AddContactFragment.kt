@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.staysafesweetheart.R
 import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
@@ -82,7 +83,7 @@ class AddContactFragment : Fragment() {
             )
         })
         addContactViewModel.contactSaved.observe(this, Observer {
-            fragmentManager?.popBackStack()
+            findNavController().popBackStack()
         })
     }
 

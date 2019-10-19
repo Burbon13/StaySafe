@@ -9,7 +9,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="alert_button_text">ALERT!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="alert_warning_text">Please use with great caution and only when in danger</string>
     <string name="add_emergency_contact">Add emergency contact</string>
@@ -22,7 +21,7 @@
     <string name="phone_example">+40 0770 999 999</string>
     <string name="email_example">e.g. stay_safe@email.org</string>
     <string name="add_contact_button_text">Add contact</string>
-    <string name="remove_contact_card_string_button">Remove</string>
+    <string name="edit_contact_card_string_button">Edit</string>
     <string name="invalid_contact_name_error">Name cannot be empty</string>
     <string name="invalid_contact_phone_error">Invalid phone number</string>
     <string name="invalid_contact_email_error">Invalid email</string>

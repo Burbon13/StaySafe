@@ -18,9 +18,7 @@ import com.example.staysafesweetheart.viewmodel.AddContactViewModel
 import com.example.staysafesweetheart.viewmodel.AddContactViewModelFactory
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class AddContactFragment : Fragment() {
     @Inject
     lateinit var addContactViewModelFactory: AddContactViewModelFactory

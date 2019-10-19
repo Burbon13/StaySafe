@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.staysafesweetheart.persistance.entities.Contact
 
+
 @Dao
 interface ContactDao {
     @Insert

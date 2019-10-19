@@ -32,4 +32,7 @@
     <string name="invalid_name_error_message">Invalid name</string>
     <string name="invalid_phone_error_message">Invalid phone</string>
     <string name="invalid_email_error_message">Invalid email</string>
+    <string name="save_template_message">Save template message</string>
+    <string name="your_template_message">Your template message</string>
+    <string name="template_message_example">Hi, \nI am Michele Trevor and I really need your help right now! \nPlease try to contact 911!\nHere are my last coordinates:\n54.235 33.425.\nMy life counts on you!</string>
 </resources>

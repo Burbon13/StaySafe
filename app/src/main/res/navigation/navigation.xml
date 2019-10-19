@@ -12,6 +12,9 @@
         <action
                 android:id="@+id/action_settingsFragment_to_myContactsFragment"
                 app:destination="@id/myContactsFragment" />
+        <action
+                android:id="@+id/action_settingsFragment_to_templateMessageFragment"
+                app:destination="@id/templateMessageFragment" />
     </fragment>
     <fragment
             android:id="@+id/myContactsFragment"
@@ -27,4 +30,9 @@
             android:name="com.example.staysafesweetheart.fragments.AddContactFragment"
             android:label="AddContactFragment"
             tools:layout="@layout/fragment_add_contact"/>
+    <fragment
+            android:id="@+id/templateMessageFragment"
+            android:name="com.example.staysafesweetheart.fragments.TemplateMessageFragment"
+            android:label="fragment_template_message"
+            tools:layout="@layout/fragment_template_message" />
 </navigation>

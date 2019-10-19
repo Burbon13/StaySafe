@@ -30,4 +30,7 @@
     <string name="emergency_contacts_image_description">An image representing 3 people</string>
     <string name="template_message_image_description">An image depicting a message with a heart</string>
     <string name="template_messages">Template messages</string>
+    <string name="invalid_name_error_message">Invalid name</string>
+    <string name="invalid_phone_error_message">Invalid phone</string>
+    <string name="invalid_email_error_message">Invalid email</string>
 </resources>

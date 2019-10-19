@@ -44,13 +44,14 @@ class AddContactViewModel(
         get() = _contactSaved
 
     fun onAddContact() {
-        val name = contactName.value!!
-        val phoneNumber = contactPhoneNumber.value!!
-        val email = contactEmail.value!!
+        val name = contactName.value
+        val phoneNumber = contactPhoneNumber.value
+        val email = contactEmail.value
 
-        val nameError = contactValidator.validateName(name)
-        val phoneNumberError = contactValidator.validatePhoneNumber(phoneNumber)
-        val emailError = contactValidator.validateEmail(email)
+        val nameError = !contactValidator.validateName(name) || name == null
+        val phoneNumberError =
+            !contactValidator.validatePhoneNumber(phoneNumber) || phoneNumber == null
+        val emailError = !contactValidator.validateEmail(email) || email == null
 
         _contactNameError.value = nameError
         _contactPhoneNumberError.value = phoneNumberError
@@ -58,10 +59,12 @@ class AddContactViewModel(
 
         if (!nameError && !phoneNumberError && !emailError) {
             viewModelScope.launch(Dispatchers.IO) {
-                val newContact = Contact(null, name, email, phoneNumber)
+                val newContact = Contact(null, name!!, email!!, phoneNumber!!)
                 Log.i(TAG, "Inserting new contact {$newContact}")
                 repository.insert(newContact)
-                _contactSaved.value = true
+                viewModelScope.launch(Dispatchers.Main) {
+                    _contactSaved.value = true
+                }
             }
         }
     }

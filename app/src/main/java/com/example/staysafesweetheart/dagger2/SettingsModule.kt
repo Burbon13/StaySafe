@@ -8,9 +8,9 @@ import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.persistance.StaySafeDatabase
 import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.daos.ContactDao
-import com.example.staysafesweetheart.viewmodel.MainActivityViewModelFactory
+import com.example.staysafesweetheart.persistance.entities.ContactValidator
+import com.example.staysafesweetheart.viewmodel.AddContactViewModelFactory
 import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
-import com.example.staysafesweetheart.viewmodel.SettingsViewModel
 import com.example.staysafesweetheart.viewmodel.SettingsViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -21,6 +21,11 @@ class SettingsModule(private val context: Context) {
 
     companion object {
         private const val DATABASE_NAME = "stay_safe_database_0.2"
+    }
+
+    @Provides
+    fun provideContactValidator(): ContactValidator {
+        return ContactValidator()
     }
 
     @Provides
@@ -60,5 +65,13 @@ class SettingsModule(private val context: Context) {
     @Provides
     fun provideMyContactsViewModelFactory(repository: StaySafeRepository): MyContactsViewModelFactory {
         return MyContactsViewModelFactory(repository)
+    }
+
+    @Provides
+    fun provideAddContactViewModelFactory(
+        repository: StaySafeRepository,
+        contactValidator: ContactValidator
+    ): AddContactViewModelFactory {
+        return AddContactViewModelFactory(repository, contactValidator)
     }
 }

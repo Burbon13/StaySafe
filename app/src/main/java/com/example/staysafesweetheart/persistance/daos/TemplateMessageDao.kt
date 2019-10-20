@@ -13,5 +13,5 @@ interface TemplateMessageDao {
     suspend fun insertTemplateMessage(templateMessage: TemplateMessage)
 
     @Query("SELECT * FROM template_messages WHERE dateCreated >= (SELECT max(dateCreated) FROM template_messages) LIMIT 1")
-    fun getLatestTemplateMessage(): Contact
+    fun getLatestTemplateMessage(): TemplateMessage
 }

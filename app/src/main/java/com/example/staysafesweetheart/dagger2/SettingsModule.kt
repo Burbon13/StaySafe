@@ -8,6 +8,7 @@ import com.example.staysafesweetheart.adapters.ContactsListAdapter
 import com.example.staysafesweetheart.persistance.StaySafeDatabase
 import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.daos.ContactDao
+import com.example.staysafesweetheart.persistance.daos.TemplateMessageDao
 import com.example.staysafesweetheart.persistance.entities.ContactValidator
 import com.example.staysafesweetheart.viewmodel.AddContactViewModelFactory
 import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
@@ -20,7 +21,7 @@ import dagger.Provides
 class SettingsModule(private val context: Context) {
 
     companion object {
-        private const val DATABASE_NAME = "stay_safe_database_0.3"
+        private const val DATABASE_NAME = "stay_safe_database_0.4"
     }
 
     @Provides
@@ -53,8 +54,16 @@ class SettingsModule(private val context: Context) {
     }
 
     @Provides
-    fun provideStaySafeRepository(contactDao: ContactDao): StaySafeRepository {
-        return StaySafeRepository(contactDao)
+    fun provideTemplateMessageDao(staySafeDatabase: StaySafeDatabase): TemplateMessageDao {
+        return staySafeDatabase.templateMessageDao()
+    }
+
+    @Provides
+    fun provideStaySafeRepository(
+        contactDao: ContactDao,
+        templateMessageDao: TemplateMessageDao
+    ): StaySafeRepository {
+        return StaySafeRepository(contactDao, templateMessageDao)
     }
 
     @Provides

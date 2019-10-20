@@ -6,7 +6,7 @@
         app:startDestination="@id/settingsFragment">
     <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.example.staysafesweetheart.fragments.SettingsFragment"
+            android:name="com.example.staysafesweetheart.fragments.settings.SettingsFragment"
             android:label="SettingsFragment"
             tools:layout="@layout/fragment_settings">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
             android:id="@+id/myContactsFragment"
-            android:name="com.example.staysafesweetheart.fragments.MyContactsFragment"
+            android:name="com.example.staysafesweetheart.fragments.settings.MyContactsFragment"
             android:label="MyContactsFragment"
             tools:layout="@layout/fragment_my_contacts">
         <action
@@ -27,12 +27,12 @@
     </fragment>
     <fragment
             android:id="@+id/addContactFragment"
-            android:name="com.example.staysafesweetheart.fragments.AddContactFragment"
+            android:name="com.example.staysafesweetheart.fragments.settings.AddContactFragment"
             android:label="AddContactFragment"
             tools:layout="@layout/fragment_add_contact"/>
     <fragment
             android:id="@+id/templateMessageFragment"
-            android:name="com.example.staysafesweetheart.fragments.TemplateMessageFragment"
+            android:name="com.example.staysafesweetheart.fragments.settings.TemplateMessageFragment"
             android:label="fragment_template_message"
             tools:layout="@layout/fragment_template_message" />
 </navigation>

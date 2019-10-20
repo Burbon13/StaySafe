@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.fragments
+package com.example.staysafesweetheart.fragments.settings
 
 import androidx.fragment.app.Fragment
 

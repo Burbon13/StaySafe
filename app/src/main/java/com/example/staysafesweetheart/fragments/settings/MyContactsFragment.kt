@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.fragments
+package com.example.staysafesweetheart.fragments.settings
 
 import android.os.Bundle
 import android.util.Log
@@ -18,8 +18,8 @@ import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
 import com.example.staysafesweetheart.dagger2.StaySafeComponent
 import com.example.staysafesweetheart.databinding.FragmentMyContactsBinding
-import com.example.staysafesweetheart.viewmodel.MyContactsViewModel
-import com.example.staysafesweetheart.viewmodel.MyContactsViewModelFactory
+import com.example.staysafesweetheart.viewmodel.settings.my.contacts.MyContactsViewModel
+import com.example.staysafesweetheart.viewmodel.settings.my.contacts.MyContactsViewModelFactory
 import javax.inject.Inject
 
 

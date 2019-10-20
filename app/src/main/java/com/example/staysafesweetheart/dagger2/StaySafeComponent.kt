@@ -1,9 +1,9 @@
 package com.example.staysafesweetheart.dagger2
 
 import com.example.staysafesweetheart.activities.MainActivity
-import com.example.staysafesweetheart.fragments.AddContactFragment
-import com.example.staysafesweetheart.fragments.MyContactsFragment
-import com.example.staysafesweetheart.fragments.SettingsFragment
+import com.example.staysafesweetheart.fragments.settings.AddContactFragment
+import com.example.staysafesweetheart.fragments.settings.MyContactsFragment
+import com.example.staysafesweetheart.fragments.settings.SettingsFragment
 import dagger.Component
 
 

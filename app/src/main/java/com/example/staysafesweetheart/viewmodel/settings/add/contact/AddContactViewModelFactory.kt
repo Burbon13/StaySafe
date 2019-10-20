@@ -1,9 +1,9 @@
-package com.example.staysafesweetheart.viewmodel
+package com.example.staysafesweetheart.viewmodel.settings.add.contact
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.staysafesweetheart.persistance.StaySafeRepository
-import com.example.staysafesweetheart.persistance.entities.ContactValidator
+import com.example.staysafesweetheart.persistance.entities.contact.ContactValidator
 
 
 class AddContactViewModelFactory(
@@ -14,7 +14,10 @@ class AddContactViewModelFactory(
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AddContactViewModel::class.java)) {
-            return AddContactViewModel(repository, contactValidator) as T
+            return AddContactViewModel(
+                repository,
+                contactValidator
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

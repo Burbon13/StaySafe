@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.staysafesweetheart.databinding.CardFragmentSettingsContactBinding
-import com.example.staysafesweetheart.persistance.entities.Contact
+import com.example.staysafesweetheart.persistance.entities.contact.Contact
 
 
 class ContactsListAdapter(context: Context) :

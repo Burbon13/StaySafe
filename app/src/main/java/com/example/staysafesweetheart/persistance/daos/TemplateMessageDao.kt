@@ -3,8 +3,7 @@ package com.example.staysafesweetheart.persistance.daos
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.staysafesweetheart.persistance.entities.Contact
-import com.example.staysafesweetheart.persistance.entities.TemplateMessage
+import com.example.staysafesweetheart.persistance.entities.template.message.TemplateMessage
 
 
 @Dao

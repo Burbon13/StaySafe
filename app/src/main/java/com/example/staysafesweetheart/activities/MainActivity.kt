@@ -13,8 +13,8 @@ import com.example.staysafesweetheart.dagger2.DaggerStaySafeComponent
 import com.example.staysafesweetheart.dagger2.SettingsModule
 import com.example.staysafesweetheart.dagger2.StaySafeComponent
 import com.example.staysafesweetheart.databinding.ActivityMainBinding
-import com.example.staysafesweetheart.fragments.AlertFragment
-import com.example.staysafesweetheart.fragments.SettingsFragmentNavigation
+import com.example.staysafesweetheart.fragments.alert.AlertFragment
+import com.example.staysafesweetheart.fragments.settings.SettingsFragmentNavigation
 import com.example.staysafesweetheart.viewmodel.MainActivityViewModel
 import com.example.staysafesweetheart.viewmodel.MainActivityViewModelFactory
 import com.google.android.material.navigation.NavigationView
@@ -77,7 +77,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Sets the first fragment to be the Alert fragment
         supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentContainer.id, AlertFragment())
+            .replace(binding.fragmentContainer.id,
+                AlertFragment()
+            )
             .commit()
     }
 
@@ -138,7 +140,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 AlertFragment()
             ).commit()
             R.id.nav_settings -> {
-                settingsFragmentNavigation = SettingsFragmentNavigation()
+                settingsFragmentNavigation =
+                    SettingsFragmentNavigation()
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragment_container,
                     settingsFragmentNavigation

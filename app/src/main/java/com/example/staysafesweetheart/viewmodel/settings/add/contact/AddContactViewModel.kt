@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.viewmodel
+package com.example.staysafesweetheart.viewmodel.settings.add.contact
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.staysafesweetheart.persistance.StaySafeRepository
-import com.example.staysafesweetheart.persistance.entities.Contact
-import com.example.staysafesweetheart.persistance.entities.ContactValidator
+import com.example.staysafesweetheart.persistance.entities.contact.Contact
+import com.example.staysafesweetheart.persistance.entities.contact.ContactValidator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -59,7 +59,13 @@ class AddContactViewModel(
 
         if (!nameError && !phoneNumberError && !emailError) {
             viewModelScope.launch(Dispatchers.IO) {
-                val newContact = Contact(null, name!!, email!!, phoneNumber!!)
+                val newContact =
+                    Contact(
+                        null,
+                        name!!,
+                        email!!,
+                        phoneNumber!!
+                    )
                 Log.i(TAG, "Inserting new contact {$newContact}")
                 repository.insert(newContact)
                 viewModelScope.launch(Dispatchers.Main) {

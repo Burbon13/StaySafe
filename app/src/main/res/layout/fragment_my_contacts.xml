@@ -7,7 +7,7 @@
 
         <variable
                 name="myContactsViewModel"
-                type="com.example.staysafesweetheart.viewmodel.MyContactsViewModel" />
+                type="com.example.staysafesweetheart.viewmodel.settings.my.contacts.MyContactsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
             android:background="@color/blue_p2"
             android:orientation="vertical"
             android:padding="5dp"
-            tools:context=".fragments.SettingsFragment">
+            tools:context=".fragments.settings.SettingsFragment">
 
 
         <TextView

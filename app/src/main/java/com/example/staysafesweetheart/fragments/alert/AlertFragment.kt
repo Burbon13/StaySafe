@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.fragments
+package com.example.staysafesweetheart.fragments.alert
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

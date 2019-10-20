@@ -4,8 +4,8 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.example.staysafesweetheart.persistance.daos.ContactDao
 import com.example.staysafesweetheart.persistance.daos.TemplateMessageDao
-import com.example.staysafesweetheart.persistance.entities.Contact
-import com.example.staysafesweetheart.persistance.entities.TemplateMessage
+import com.example.staysafesweetheart.persistance.entities.contact.Contact
+import com.example.staysafesweetheart.persistance.entities.template.message.TemplateMessage
 
 
 class StaySafeRepository(

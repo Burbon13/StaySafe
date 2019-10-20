@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.viewmodel
+package com.example.staysafesweetheart.viewmodel.settings
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

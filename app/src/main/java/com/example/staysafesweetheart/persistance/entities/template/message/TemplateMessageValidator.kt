@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.persistance.entities
+package com.example.staysafesweetheart.persistance.entities.template.message
 
 
 class TemplateMessageValidator {

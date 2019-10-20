@@ -1,4 +1,4 @@
-package com.example.staysafesweetheart.viewmodel
+package com.example.staysafesweetheart.viewmodel.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

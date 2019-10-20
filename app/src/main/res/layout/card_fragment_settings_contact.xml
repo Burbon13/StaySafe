@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="contact"
-                type="com.example.staysafesweetheart.persistance.entities.Contact" />
+                type="com.example.staysafesweetheart.persistance.entities.contact.Contact" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

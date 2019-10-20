@@ -1,5 +1,6 @@
 package com.example.staysafesweetheart.persistance.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -11,6 +12,9 @@ interface TemplateMessageDao {
     @Insert
     suspend fun insertTemplateMessage(templateMessage: TemplateMessage)
 
-    @Query("SELECT * FROM template_messages WHERE dateCreated >= (SELECT max(dateCreated) FROM template_messages) LIMIT 1")
-    fun getLatestTemplateMessage(): TemplateMessage
+    @Query("DELETE FROM template_messages")
+    suspend fun clearTable()
+
+    @Query("SELECT * FROM template_messages LIMIT 1")
+    fun getLatestTemplateMessage(): LiveData<TemplateMessage>
 }

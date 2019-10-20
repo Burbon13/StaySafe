@@ -10,9 +10,11 @@ import com.example.staysafesweetheart.persistance.StaySafeRepository
 import com.example.staysafesweetheart.persistance.daos.ContactDao
 import com.example.staysafesweetheart.persistance.daos.TemplateMessageDao
 import com.example.staysafesweetheart.persistance.entities.contact.ContactValidator
+import com.example.staysafesweetheart.persistance.entities.template.message.TemplateMessageValidator
 import com.example.staysafesweetheart.viewmodel.settings.add.contact.AddContactViewModelFactory
 import com.example.staysafesweetheart.viewmodel.settings.my.contacts.MyContactsViewModelFactory
 import com.example.staysafesweetheart.viewmodel.settings.SettingsViewModelFactory
+import com.example.staysafesweetheart.viewmodel.settings.template.message.TemplateMessageViewModelFactory
 import dagger.Module
 import dagger.Provides
 
@@ -27,6 +29,11 @@ class SettingsModule(private val context: Context) {
     @Provides
     fun provideContactValidator(): ContactValidator {
         return ContactValidator()
+    }
+
+    @Provides
+    fun provideTemplateMessageValidator(): TemplateMessageValidator {
+        return TemplateMessageValidator()
     }
 
     @Provides
@@ -73,9 +80,7 @@ class SettingsModule(private val context: Context) {
 
     @Provides
     fun provideMyContactsViewModelFactory(repository: StaySafeRepository): MyContactsViewModelFactory {
-        return MyContactsViewModelFactory(
-            repository
-        )
+        return MyContactsViewModelFactory(repository)
     }
 
     @Provides
@@ -87,5 +92,13 @@ class SettingsModule(private val context: Context) {
             repository,
             contactValidator
         )
+    }
+
+    @Provides
+    fun provideTemplateMessageViewModelFactory(
+        repository: StaySafeRepository,
+        templateMessageValidator: TemplateMessageValidator
+    ): TemplateMessageViewModelFactory {
+        return TemplateMessageViewModelFactory(repository, templateMessageValidator)
     }
 }

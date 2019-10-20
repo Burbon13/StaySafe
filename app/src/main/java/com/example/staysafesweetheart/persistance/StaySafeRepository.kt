@@ -13,6 +13,7 @@ class StaySafeRepository(
     private val templateMessageDao: TemplateMessageDao
 ) {
     val allContacts: LiveData<List<Contact>> = contactDao.getAllContacts()
+    val templateMessage: LiveData<TemplateMessage> = templateMessageDao.getLatestTemplateMessage()
 
     @WorkerThread
     suspend fun insert(contact: Contact) {
@@ -22,5 +23,11 @@ class StaySafeRepository(
     @WorkerThread
     suspend fun insertTemplateMessage(templateMessage: TemplateMessage) {
         templateMessageDao.insertTemplateMessage(templateMessage)
+    }
+
+    @WorkerThread
+    suspend fun updateTemplateMessage(templateMessage: TemplateMessage) {
+        templateMessageDao.clearTable()
+        insertTemplateMessage(templateMessage)
     }
 }

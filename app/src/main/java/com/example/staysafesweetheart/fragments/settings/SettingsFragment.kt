@@ -22,16 +22,16 @@ import javax.inject.Inject
 
 class SettingsFragment : Fragment() {
 
+    companion object {
+        private val TAG = SettingsFragment::class.qualifiedName
+    }
+
     @Inject
     lateinit var settingsViewModelFactory: SettingsViewModelFactory
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var daggerComponent: StaySafeComponent
-
-    companion object {
-        private val TAG = SettingsFragment::class.qualifiedName
-    }
 
     //Dependency injection and initialization of Fragment’s members takes place here.
     //You must not touch or do anything related to Android Views in Fragment’s onCreate(Bundle)
@@ -52,7 +52,8 @@ class SettingsFragment : Fragment() {
     // make sure that all these fields are assigned in this method. This is really important.
     // Every Fragment’s field related to View hierarchy must be assigned in this method.
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "onCreateView()")
@@ -90,5 +91,6 @@ class SettingsFragment : Fragment() {
 
     private fun openTemplateMessagesFragment() {
         Log.d(TAG, "Opening 'TemplateMessages' fragment")
+        findNavController().navigate(R.id.action_settingsFragment_to_templateMessageFragment)
     }
 }

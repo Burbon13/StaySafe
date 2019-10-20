@@ -4,6 +4,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".fragments.settings.TemplateMessageFragment">
 
+    <data>
+
+        <variable
+                name="templateMessageViewModel"
+                type="com.example.staysafesweetheart.viewmodel.settings.template.message.TemplateMessageViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,6 +37,7 @@
                 android:gravity="start|top"
                 android:hint="@string/template_message_example"
                 android:inputType="textMultiLine"
+                android:text="@={templateMessageViewModel.newTemplateMessageText}"
                 app:layout_constraintBottom_toTopOf="@+id/templateMessagesButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.444"
@@ -41,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/red_p2"
+                android:onClick="@{() -> templateMessageViewModel.saveNewTemplateMessage()}"
                 android:padding="10sp"
                 android:text="@string/save_template_message"
                 android:textColor="#ffffff"

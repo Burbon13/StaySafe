@@ -69,7 +69,7 @@ class TemplateMessageFragment : Fragment() {
         Log.d(TAG, "onStart()")
         //ONCE ONCE ONCE
         templateMessageViewModel.templateMessage.observe(this, Observer { templateMessage ->
-            binding.templateMessagesEditText.setText(templateMessage.text)
+            binding.templateMessagesEditText.setText(templateMessage?.text)
         })
         templateMessageViewModel.templateMessageTextError.observe(this, Observer { error ->
             if (error) {

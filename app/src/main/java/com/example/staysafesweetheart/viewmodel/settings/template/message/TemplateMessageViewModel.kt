@@ -31,7 +31,7 @@ class TemplateMessageViewModel(
 
     fun saveNewTemplateMessage() {
         val text = newTemplateMessageText.value
-        val textError = !templateMessageValidator.validateText(text)
+        val textError = text == null || !templateMessageValidator.validateText(text)
 
         _templateMessageTextError.value = textError
 
